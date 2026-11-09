@@ -1,0 +1,76 @@
+---
+import { homeUrl, useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+import { profile } from '../data/profile';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const cv = profile.cv[lang];
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<section class="container-page grid gap-6 pt-16 pb-4 sm:pt-24" aria-labelledby="hero-title">
+  <span class="inline-flex items-center gap-2 text-sm text-muted">
+    <span class="size-2 rounded-full bg-accent ring-4 ring-accent-soft" aria-hidden="true"></span>
+    {t('hero.status')}
+  </span>
+  <h1
+    id="hero-title"
+    class="text-[clamp(2.25rem,6vw,3.25rem)] leading-[1.08] font-bold tracking-[-0.035em] [&_em]:text-accent [&_em]:not-italic"
+    set:html={t('hero.title')}
+  />
+  <p class="m-0 max-w-xl text-lg text-muted">{t('hero.lead')}</p>
+  <p class="m-0 flex flex-wrap gap-x-6 gap-y-1 font-mono text-[0.8125rem] text-muted">
+    <span>
+      {t('hero.location')} · UTC−6 ·{' '}
+      <time data-clock data-tz={profile.timeZone}>
+        --:--
+      </time>
+    </span>
+  </p>
+  <div class="flex flex-wrap gap-3">
+    <a class="btn btn-primary" href={homeUrl(lang, '#projects')}>
+      {t('hero.cta.projects')}
+      <svg
+        class="size-4"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        aria-hidden="true"
+      >
+        <path d="M5 12h14M13 6l6 6-6 6"></path>
+      </svg>
+    </a>
+    {cv ? (
+      <a class="btn btn-secondary" href={`${base}/${cv}`} download>
+        {t('hero.cta.cv')}
+      </a>
+    ) : (
+      <a class="btn btn-secondary" href={homeUrl(lang, '#contact')}>
+        {t('hero.cta.contact')}
+      </a>
+    )}
+    <a class="btn btn-ghost" href={profile.github} target="_blank" rel="noopener">
+      GitHub ↗
+    </a>
+  </div>
+</section>
+
+<script>
+  // Hora local de Managua, para quien escribe desde otra zona horaria.
+  document.querySelectorAll<HTMLTimeElement>('[data-clock]').forEach((el) => {
+    const format = new Intl.DateTimeFormat(document.documentElement.lang, {
+      hour: '2-digit',
+      minute: '2-digit',
+      timeZone: el.dataset.tz,
+    });
+    const tick = () => (el.textContent = format.format(new Date()));
+    tick();
+    setInterval(tick, 30_000);
+  });
+</script>

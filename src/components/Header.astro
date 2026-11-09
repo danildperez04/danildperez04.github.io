@@ -1,0 +1,41 @@
+---
+import LangSwitch from './LangSwitch.astro';
+import ThemeToggle from './ThemeToggle.astro';
+import { homeUrl, useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const links = [
+  { id: 'about', label: t('nav.about') },
+  { id: 'projects', label: t('nav.projects') },
+  { id: 'stack', label: t('nav.stack') },
+  { id: 'experience', label: t('nav.experience') },
+  { id: 'contact', label: t('nav.contact') },
+];
+---
+
+<header class="sticky top-[env(safe-area-inset-top,0px)] z-20 border-b border-border bg-header backdrop-blur-md">
+  <div class="container-page flex h-15 items-center gap-4">
+    <a href={homeUrl(lang)} class="text-[1.05rem] font-bold tracking-tighter text-fg no-underline">
+      danild<span class="text-accent">.</span>dev
+    </a>
+    <nav aria-label={t('nav.label')} class="ml-auto hidden gap-6 md:flex">
+      {links.map((link) => (
+        <a
+          href={homeUrl(lang, `#${link.id}`)}
+          class="text-sm font-medium text-muted no-underline transition-colors hover:text-fg"
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+    <div class="ml-auto flex items-center gap-2 md:ml-0">
+      <LangSwitch lang={lang} label={t('lang.switch')} />
+      <ThemeToggle label={t('theme.toggle')} />
+    </div>
+  </div>
+</header>

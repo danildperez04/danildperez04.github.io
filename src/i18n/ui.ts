@@ -1,0 +1,111 @@
+export const languages = { es: 'Español', en: 'English' } as const;
+export type Lang = keyof typeof languages;
+export const defaultLang: Lang = 'es';
+
+/** Textos de interfaz. Toda clave nueva va en los dos idiomas. */
+export const ui = {
+  es: {
+    'meta.title': 'Danild Pérez · Desarrollador full-stack',
+    'meta.description':
+      'Portafolio de Danild Pérez, desarrollador full-stack en Nicaragua: TypeScript, NestJS, React y PostgreSQL.',
+    'nav.label': 'Principal',
+    'nav.about': 'Sobre mí',
+    'nav.projects': 'Proyectos',
+    'nav.stack': 'Stack',
+    'nav.experience': 'Experiencia',
+    'nav.contact': 'Contacto',
+    'theme.toggle': 'Cambiar entre tema claro y oscuro',
+    'lang.switch': 'Ver el sitio en inglés',
+    skip: 'Saltar al contenido',
+    'hero.status': 'Abierto a oportunidades en remoto',
+    'hero.title': 'Hola, soy Danild. Construyo software que resuelve <em>problemas reales</em>.',
+    'hero.lead':
+      'Desarrollador full-stack en Nicaragua. Trabajo con TypeScript, NestJS y React sobre PostgreSQL, y en mis ratos libres practico ciberseguridad.',
+    'hero.location': 'Managua, Nicaragua',
+    'hero.cta.projects': 'Ver proyectos',
+    'hero.cta.contact': 'Contactar',
+    'hero.cta.cv': 'Descargar CV',
+    'about.eyebrow': 'Sobre mí',
+    'about.title': 'Software útil para mi entorno',
+    'about.p1':
+      'Me gusta construir software que resuelva problemas reales de mi entorno. Actualmente hago mi pasantía en la Fundación Ayuda en Acción, donde desarrollo un sistema de gestión de medios.',
+    'about.p2':
+      'Antes trabajé en proyectos de salud, como el seguimiento de pacientes con enfermedades crónicas, y de turismo en Nicaragua como propuesta en Hackathon Nicaragua. Cuido la calidad: pruebas, revisión de código, Conventional Commits y CI.',
+    'about.education': 'Formación',
+    'about.education.value': 'Ingeniería de Sistemas, en proceso de titulación',
+    'about.languages': 'Idiomas',
+    'about.languages.value': 'Español (nativo) · Inglés (intermedio B1)',
+    'projects.eyebrow': 'Trabajo',
+    'projects.title': 'Proyectos destacados',
+    'projects.code': 'Código',
+    'projects.demo': 'Demo',
+    'projects.more': 'Ver todo en GitHub',
+    'stack.eyebrow': 'Herramientas',
+    'stack.title': 'Stack',
+    'experience.eyebrow': 'Trayectoria',
+    'experience.title': 'Experiencia',
+    'contact.eyebrow': 'Contacto',
+    'contact.title': '¿Tienes un proyecto en mente?',
+    'contact.text':
+      'Escríbeme y te respondo en uno o dos días. También estoy en LinkedIn y GitHub.',
+    'contact.copy': 'Copiar correo',
+    'contact.copied': 'Copiado',
+    'footer.built': 'Hecho con Astro y Tailwind',
+    '404.title': 'Página no encontrada',
+    '404.text': 'La página que buscas no existe o se movió.',
+    '404.back': 'Volver al inicio',
+  },
+  en: {
+    'meta.title': 'Danild Pérez · Full-stack developer',
+    'meta.description':
+      'Portfolio of Danild Pérez, full-stack developer based in Nicaragua: TypeScript, NestJS, React and PostgreSQL.',
+    'nav.label': 'Main',
+    'nav.about': 'About',
+    'nav.projects': 'Projects',
+    'nav.stack': 'Stack',
+    'nav.experience': 'Experience',
+    'nav.contact': 'Contact',
+    'theme.toggle': 'Toggle light and dark theme',
+    'lang.switch': 'Ver el sitio en español',
+    skip: 'Skip to content',
+    'hero.status': 'Open to remote opportunities',
+    'hero.title': 'Hi, I’m Danild. I build software that solves <em>real problems</em>.',
+    'hero.lead':
+      'Full-stack developer based in Nicaragua. I work with TypeScript, NestJS and React on PostgreSQL, and practice cybersecurity in my spare time.',
+    'hero.location': 'Managua, Nicaragua',
+    'hero.cta.projects': 'See projects',
+    'hero.cta.contact': 'Get in touch',
+    'hero.cta.cv': 'Download CV',
+    'about.eyebrow': 'About',
+    'about.title': 'Useful software for my community',
+    'about.p1':
+      'I like building software that solves real problems around me. I’m currently an intern at Fundación Ayuda en Acción, where I’m building a resource management system.',
+    'about.p2':
+      'Before that I worked on health projects, such as follow-up of patients with chronic diseases, and on tourism in Nicaragua as a Hackathon Nicaragua proposal. I care about quality: tests, code review, Conventional Commits and CI.',
+    'about.education': 'Education',
+    'about.education.value': 'Systems Engineering, degree in progress',
+    'about.languages': 'Languages',
+    'about.languages.value': 'Spanish (native) · English (intermediate B1)',
+    'projects.eyebrow': 'Work',
+    'projects.title': 'Featured projects',
+    'projects.code': 'Code',
+    'projects.demo': 'Demo',
+    'projects.more': 'See everything on GitHub',
+    'stack.eyebrow': 'Tools',
+    'stack.title': 'Stack',
+    'experience.eyebrow': 'Background',
+    'experience.title': 'Experience',
+    'contact.eyebrow': 'Contact',
+    'contact.title': 'Have a project in mind?',
+    'contact.text':
+      'Write to me and I’ll reply within a day or two. I’m also on LinkedIn and GitHub.',
+    'contact.copy': 'Copy email',
+    'contact.copied': 'Copied',
+    'footer.built': 'Built with Astro and Tailwind',
+    '404.title': 'Page not found',
+    '404.text': 'The page you are looking for doesn’t exist or was moved.',
+    '404.back': 'Back to home',
+  },
+} as const satisfies Record<Lang, Record<string, string>>;
+
+export type UiKey = keyof (typeof ui)['es'];

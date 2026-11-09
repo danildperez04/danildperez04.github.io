@@ -1,0 +1,30 @@
+---
+import Section from './Section.astro';
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+import { stack } from '../data/profile';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<Section id="stack" eyebrow={t('stack.eyebrow')} title={t('stack.title')}>
+  <dl class="m-0 grid gap-5">
+    {stack.map((group) => (
+      <div class="grid gap-2 sm:grid-cols-[7.5rem_1fr] sm:gap-4">
+        <dt class="font-mono text-[0.8125rem] text-muted sm:pt-0.5">{group.label[lang]}</dt>
+        <dd class="m-0 flex min-w-0 flex-wrap gap-2">
+          {group.main.map((item) => (
+            <span class="tag">{item}</span>
+          ))}
+          {group.extra.map((item) => (
+            <span class="tag-outline">{typeof item === 'string' ? item : item[lang]}</span>
+          ))}
+        </dd>
+      </div>
+    ))}
+  </dl>
+</Section>

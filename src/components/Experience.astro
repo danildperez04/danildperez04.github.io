@@ -1,0 +1,34 @@
+---
+import Section from './Section.astro';
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+import { experience } from '../data/profile';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<Section id="experience" eyebrow={t('experience.eyebrow')} title={t('experience.title')}>
+  <ol class="m-0 grid list-none p-0">
+    {experience.map((item) => (
+      <li class="grid gap-1 border-t border-border py-4 last:border-b sm:grid-cols-[7.5rem_1fr] sm:gap-4">
+        <span class="font-mono text-[0.8125rem] text-muted sm:pt-0.5">{item.period[lang]}</span>
+        <div class="min-w-0">
+          <h3 class="text-base font-semibold">
+            {item.title[lang]}
+            {item.org && (
+              <>
+                {' · '}
+                <span class="font-medium text-accent">{item.org}</span>
+              </>
+            )}
+          </h3>
+          <p class="m-0 mt-1 text-[0.93rem] text-muted">{item.description[lang]}</p>
+        </div>
+      </li>
+    ))}
+  </ol>
+</Section>

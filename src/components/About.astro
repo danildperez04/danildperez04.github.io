@@ -1,0 +1,29 @@
+---
+import Section from './Section.astro';
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+const t = useTranslations(Astro.props.lang);
+const facts = [
+  { label: t('about.education'), value: t('about.education.value') },
+  { label: t('about.languages'), value: t('about.languages.value') },
+];
+---
+
+<Section id="about" eyebrow={t('about.eyebrow')} title={t('about.title')}>
+  <div class="grid gap-4 text-muted">
+    <p class="m-0">{t('about.p1')}</p>
+    <p class="m-0">{t('about.p2')}</p>
+  </div>
+  <dl class="mt-6 grid gap-3 sm:grid-cols-2">
+    {facts.map((fact) => (
+      <div class="rounded-md border border-border bg-surface px-4 py-3">
+        <dt class="font-mono text-xs tracking-widest text-muted uppercase">{fact.label}</dt>
+        <dd class="m-0 mt-1 text-[0.95rem]">{fact.value}</dd>
+      </div>
+    ))}
+  </dl>
+</Section>

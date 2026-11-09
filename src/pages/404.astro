@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { homeUrl, useTranslations } from '../i18n/utils';
+
+const t = useTranslations('es');
+const en = useTranslations('en');
+---
+
+<BaseLayout title={`404 · ${t('404.title')}`} noAlternates>
+  <section class="container-page grid gap-4 pt-24">
+    <span class="eyebrow">404</span>
+    <h1 class="text-4xl font-bold tracking-tight">{t('404.title')}</h1>
+    <p class="m-0 text-muted">{t('404.text')}</p>
+    <p class="m-0 text-muted" lang="en">
+      {en('404.text')}
+    </p>
+    <div class="flex flex-wrap gap-3">
+      <a class="btn btn-primary" href={homeUrl('es')}>
+        {t('404.back')}
+      </a>
+      <a class="btn btn-secondary" href={homeUrl('en')} lang="en">
+        {en('404.back')}
+      </a>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,40 @@
+---
+import { getCollection } from 'astro:content';
+import Section from './Section.astro';
+import ProjectCard from './ProjectCard.astro';
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+import { profile } from '../data/profile';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const projects = (await getCollection('projects', (entry) => entry.id.startsWith(`${lang}/`))).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+---
+
+<Section id="projects" eyebrow={t('projects.eyebrow')} title={t('projects.title')}>
+  <div class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,19rem),1fr))] gap-4">
+    {projects.map(({ data }) => (
+      <ProjectCard
+        title={data.title}
+        summary={data.summary}
+        stack={data.stack}
+        href={data.demo ?? data.repo}
+      />
+    ))}
+  </div>
+  <p class="mt-6 mb-0">
+    <a
+      class="text-accent underline-offset-4 hover:underline"
+      href={profile.github}
+      target="_blank"
+      rel="noopener"
+    >
+      {t('projects.more')} ↗
+    </a>
+  </p>
+</Section>

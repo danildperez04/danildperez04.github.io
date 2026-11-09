@@ -1,0 +1,20 @@
+---
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+import { profile } from '../data/profile';
+
+interface Props {
+  lang: Lang;
+}
+const t = useTranslations(Astro.props.lang);
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-16 border-t border-border py-8">
+  <div class="container-page flex flex-wrap justify-between gap-3 text-sm text-muted">
+    <span>
+      © {year} {profile.name}
+    </span>
+    <span class="font-mono text-[0.8rem]">{t('footer.built')}</span>
+  </div>
+</footer>
