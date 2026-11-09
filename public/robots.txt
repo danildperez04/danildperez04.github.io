@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://danildperez04.github.io/portfolio/sitemap-index.xml
