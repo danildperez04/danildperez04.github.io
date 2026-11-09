@@ -29,8 +29,9 @@ Con el servidor de desarrollo en segundo plano: `astro dev --background`
 3. **El tema** se aplica con la clase `dark` en `<html>` desde el script en línea de
    `BaseLayout.astro` (preferencia guardada > sistema). No moverlo a un script diferido:
    aparecería un destello del tema equivocado.
-4. **Rutas con `base`.** El sitio vive en `/portfolio/`: los enlaces internos usan
-   `homeUrl()` de `src/i18n/utils.ts` o `import.meta.env.BASE_URL`, nunca `/` a secas.
+4. **Rutas con `base`.** Hoy el sitio se sirve desde la raíz, pero los enlaces internos
+   usan `homeUrl()` de `src/i18n/utils.ts` o `import.meta.env.BASE_URL`, nunca `/` a
+   secas, para que mover el sitio a una subruta no rompa nada.
 5. Sin trackers ni scripts de terceros; sin secretos en el repo.
 
 ## Documentación de Astro

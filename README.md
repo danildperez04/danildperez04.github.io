@@ -3,7 +3,7 @@
 Sitio personal: presentación, proyectos, stack, experiencia y contacto. En español
 (`/`) e inglés (`/en/`), con tema claro y oscuro.
 
-Publicado en <https://danildperez04.github.io/portfolio/>.
+Publicado en <https://danildperez04.github.io/>.
 
 ## Stack
 
@@ -13,7 +13,7 @@ Astro 7 (sitio estático) · Tailwind CSS 4 · TypeScript · GitHub Pages.
 
 ```bash
 pnpm install
-pnpm dev        # http://localhost:4321/portfolio/
+pnpm dev        # http://localhost:4321/
 pnpm check      # tipos (astro check)
 pnpm build      # genera dist/
 pnpm preview    # sirve dist/
@@ -37,5 +37,5 @@ Para mostrar el botón **Descargar CV**, copia los PDF a `public/` (p. ej. `cv-e
 Cada push a `main` ejecuta `.github/workflows/deploy.yml` y publica en GitHub Pages.
 Configuración única en GitHub: **Settings → Pages → Source: GitHub Actions**.
 
-Con dominio propio: cambia `site` en `astro.config.mjs`, quita `base` y actualiza
+Con dominio propio: cambia `site` en `astro.config.mjs` y actualiza
 `public/robots.txt`.
